@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Sign In</title>
+  <script src="https://www.gstatic.com/firebasejs/9.0.0/firebase-app.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/9.0.0/firebase-auth.js"></script>
+  <script>
+    // Your Firebase configuration values
+  // Firebase configuration
+  const firebaseConfig = {
+  apiKey: "AIzaSyBcyc-fUsFzcJSuMFEKxisiPyqRy2X4WV8",
+  authDomain: "major-284bc.firebaseapp.com",
+  projectId: "major-284bc",
+  storageBucket: "major-284bc.appspot.com",
+  messagingSenderId: "61685223116",
+  appId: "1:61685223116:web:abcd1234efgh5678ijkl",
+  measurementId: "G-XXXXXXX"
+};
+
+    // Initialize Firebase
+    firebase.initializeApp(firebaseConfig);
+
+    window.onload = function() {
+      const actionCode = new URLSearchParams(window.location.search).get('oobCode');
+      if (actionCode) {
+        firebase.auth().applyActionCode(actionCode).then(() => {
+          // Successfully signed in
+          window.location.href = 'https://www.yoursite.com/success'; // Replace with your redirect URL
+        }).catch((error) => {
+          console.error('Error completing sign-in:', error);
+        });
+      }
+    };
+  </script>
+</head>
+<body>
+  <h1>Processing Sign In...</h1>
+</body>
+</html>
